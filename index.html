@@ -273,7 +273,6 @@
             });
 
             body.addEventListener('touchmove', function(event) {
-                event.preventDefault();
                 var distanceX  = x - event.changedTouches[0].pageX
                   , distanceY  = y - event.changedTouches[0].pageY
                   , movedLeft  = 15 < distanceX
@@ -281,11 +280,13 @@
                   , movedVert  = (distanceY > 15 || distanceY < -15);
 
                 if (movedLeft && !movedVert) {
-                    return hideMenu();
+                  event.preventDefault();
+                  return hideMenu();
                 }
 
                 if (movedRight && !movedVert) {
-                    return showMenu();
+                  event.preventDefault();
+                  return showMenu();
                 }
             });
         }());
